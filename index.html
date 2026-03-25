@@ -1,103 +1,118 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cameron Snyders | Cloud Engineer</title>
 
-<style>
-body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  background: linear-gradient(to right, #eef2f3, #dfe9f3);
-  margin: 0;
-  padding: 0;
-  color: #333;
-}
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f7fb;
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
 
-.container {
-  max-width: 800px;
-  margin: 60px auto;
-  background: white;
-  padding: 40px;
-  border-radius: 16px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-  text-align: center;
-}
+    .container {
+      max-width: 900px;
+      margin: 40px auto;
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    }
 
-.profile-img {
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  object-fit: cover;
-  margin-bottom: 15px;
-}
+    /* HEADER */
+    .header {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
 
-h1 {
-  margin-bottom: 5px;
-}
+    .profile-image {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid #2563eb;
+    }
 
-h2 {
-  margin-top: 40px;
-  border-bottom: 2px solid #eee;
-  padding-bottom: 5px;
-  text-align: left;
-}
+    h1 {
+      margin: 0;
+    }
 
-p {
-  line-height: 1.6;
-  color: #555;
-  text-align: left;
-}
+    .subtitle {
+      margin: 5px 0 15px;
+      color: #555;
+    }
 
-ul {
-  text-align: left;
-  padding-left: 20px;
-}
+    /* BUTTONS */
+    .buttons a {
+      text-decoration: none;
+      margin-right: 10px;
+      padding: 10px 18px;
+      border-radius: 8px;
+      background: #1e293b;
+      color: white;
+      font-weight: bold;
+      transition: 0.3s;
+    }
 
-a.button {
-  display: inline-block;
-  padding: 10px 18px;
-  margin: 10px 5px;
-  border-radius: 8px;
-  background: #2563eb;
-  color: white;
-  text-decoration: none;
-  transition: 0.3s;
-}
+    .buttons a:hover {
+      background: #2563eb;
+      transform: translateY(-2px);
+    }
 
-a.button:hover {
-  background: #1e40af;
-}
+    h2 {
+      margin-top: 30px;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 5px;
+    }
 
-.visitor-box {
-  margin-top: 20px;
-  padding: 15px 20px;
-  background: linear-gradient(135deg, #2563eb, #1e40af);
-  border-radius: 12px;
-  color: white;
-  display: inline-block;
-  font-weight: bold;
-  font-size: 1.2rem;
-}
-</style>
+    ul {
+      padding-left: 20px;
+    }
+
+    /* VISITOR COUNTER */
+    .visitor-box {
+      margin-top: 20px;
+    }
+
+    #visitor-count {
+      display: inline-block;
+      padding: 12px 22px;
+      background: linear-gradient(135deg, #2563eb, #1e40af);
+      color: white;
+      border-radius: 25px;
+      font-weight: bold;
+      font-size: 1.2rem;
+    }
+  </style>
 </head>
 
 <body>
   <div class="container">
 
     <div class="header">
-      <img src="profile.jpg" alt="Profile"> class="profile-image">
-      <h1>Hello, I'm Cameron 👋</h1>
-      <p class="subtitle">Aspiring Cloud Engineer | AWS | Cloud Resume Challenge</p>
+      <!-- 🔥 MAKE SURE THIS FILE EXISTS IN YOUR REPO -->
+      <img src="profile.jpg" alt="Profile" class="profile-image">
 
-      <div class="buttons">
-        <a href="https://github.com/cameronsnyders08-max">GitHub</a>
-        <a href="https://linkedin.com">LinkedIn</a>
+      <div>
+        <h1>Hello, I'm Cameron 👋</h1>
+        <p class="subtitle">Aspiring Cloud Engineer | AWS | Cloud Resume Challenge</p>
+
+        <div class="buttons">
+          <a href="https://github.com/cameronsnyders08-max" target="_blank">GitHub</a>
+          <a href="linkedin.com/in/cameron-snyders-89b1aa3a8" target="_blank">LinkedIn</a>
+        </div>
       </div>
     </div>
 
     <h2>About Me</h2>
     <p>
-      I am currently building cloud projects to develop my skills in AWS, including serverless applications, APIs, and scalable cloud infrastructure.
+      I am currently building cloud projects to develop my skills in AWS,
+      including serverless applications, APIs, and cloud infrastructure.
     </p>
 
     <h2>Skills</h2>
@@ -114,9 +129,9 @@ a.button:hover {
       <li>Serverless Visitor Counter (Lambda + DynamoDB)</li>
     </ul>
 
-    <h2>Visitor Analytics</h2>
+    <h2>Visitor Count</h2>
     <div class="visitor-box">
-      <span id="visitor-count">Loading...</span> visits
+      <span id="visitor-count">Loading...</span>
     </div>
 
   </div>
@@ -124,14 +139,10 @@ a.button:hover {
   <script>
     async function getVisitorCount() {
       try {
-        const response = await fetch("https://6kvtdac1ki.execute-api.us-east-1.amazonaws.com/prod/count", {
-          method:: "GET",
-          mode: "cors"
-        });
-
+        const response = await fetch("https://6kvtdac1ki.execute-api.us-east-1.amazonaws.com/prod/count");
         const data = await response.json();
 
-        document.getElementById("visitor-count").innerText = data.count;
+        document.getElementById("visitor-count").innerText = "👀 Visitors: " + data.count;
 
       } catch (error) {
         console.error("Error fetching visitor count:", error);
